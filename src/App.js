@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Section from './components/Section/Section'
+import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions'
+import Statistics from './components/Statistics/Statistics';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+  good: 0,
+  neutral: 0,
+  bad: 0
+  }
+
+    addFeedback = value => {
+    this.setState(prevState => ({
+      [value]: prevState[value] + 1,
+    }));
+  };
+
+    countTotalFeedback = () =>
+      Object.values(this.state).reduce((total, item) => total + item, 0);
+  
+  countPositiveFeedbackPercentage()
+  
+  render() {
+    const keyNames = Object.keys(this.state);
+    const { addFeedback, countTotalFeedback, countPositiveFeedbackPercentage} = this;
+    const { good, neutral, bad } = this.state;
+
+    return (
+      <>
+      <Section title="Please leave feedback">
+        <FeedbackOptions
+        options={keyNames}
+        onLeaveFeedback={addFeedback}
+        > </FeedbackOptions> 
+      </Section>
+      <Section title="Statistics">
+          <Statistics good={good} neutral={neutral} bad={bad} total={countTotalFeedback()}>
+            
+      </Statistics>
+        </Section>
+        </>
+    );
+  }
 }
 
 export default App;
