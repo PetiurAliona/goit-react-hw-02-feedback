@@ -22,17 +22,3 @@ Statistics.propTypes = {
 
 export default Statistics;
 
-// import StatsItem from '../StatsItem/StatsItem'
-// const Statistics = ({ this.state }) => {
-//    const statsArr = Object.keys(this.state);
-
-//     return (
-//         <ul>
-//           {statsArr.map((e) => (
-//           <StatsItem title={e[0]} value={e[1]} key={e[1]} />
-//         ))}
-//         </ul>
-//     );
-// }
-
-// export default Statistics;
